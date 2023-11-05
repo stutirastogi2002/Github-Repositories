@@ -2,4 +2,27 @@
   <div class="font-bold text-3xl">
     Fyle Internship Challenge
   </div>
+  <div>
+    <div>
+      <h2>GitHub Repo Viewer</h2>
+      <form (submit)="loadRepositories()">
+        <label for="githubUsername">GitHub Username:</label>
+        <input type="text" id="githubUsername" [(ngModel)]="username" name="githubUsername">
+        <button type="submit">Get Repositories</button>
+      </form>
+    </div>
+    <div *ngIf="repositories.length > 0">
+      <h3>Repositories for {{ username }} (Page {{ currentPage }}):</h3>
+      <ul>
+        <li *ngFor="let repo of repositories">
+          {{ repo.name }} - {{ repo.description }}
+        </li>
+      </ul>
+      
+    </div>
+    <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>
+    <button (click)="nextPage()">Next</button>
+    
+    
+  </div>
 </div>
