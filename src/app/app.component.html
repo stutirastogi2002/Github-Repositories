@@ -13,11 +13,14 @@
     </div>
     <div *ngIf="repositories.length > 0">
       <h3>Repositories for {{ username }} (Page {{ currentPage }}):</h3>
-      <ul>
+      <ol>
+        <!-- <script>
+          console.log(repositories);
+        </script> -->
         <li *ngFor="let repo of repositories">
-          {{ repo.name }} - {{ repo.description }}
+          {{ repo.name }} -<br> {{ repo.description }}- <br> {{repo.topics}}
         </li>
-      </ul>
+      </ol>
       
     </div>
     <button (click)="prevPage()" [disabled]="currentPage === 1">Previous</button>

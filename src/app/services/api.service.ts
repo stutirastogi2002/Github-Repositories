@@ -6,8 +6,6 @@ import { tap, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  // [x: string]: any;
-
   constructor(
     private httpClient: HttpClient
   ) { }
@@ -17,6 +15,7 @@ export class ApiService {
   }
   getRepos(username: string, perPage: number, startIndex: number) {
     const url = `https://api.github.com/users/${username}/repos?per_page=${perPage}&page=${startIndex / perPage + 1}`;
+    console.log("i got this" + this.httpClient.get(url));
     return this.httpClient.get(url);
   }
   // implement getRepos method by referring to the documentation. Add proper types for the return type and params 
