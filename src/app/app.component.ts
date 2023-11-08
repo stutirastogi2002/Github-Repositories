@@ -11,7 +11,7 @@ export class AppComponent implements OnInit{
   username: string = '';
   repositories: any[] = [];
   currentPage: number = 1;
-  // githubService: any;
+  userData : any[]=[];
   constructor(
     private apiService: ApiService
   ) {}
@@ -25,6 +25,9 @@ export class AppComponent implements OnInit{
 
       this.apiService.getRepos(this.username, itemsPerPage, startIndex).subscribe((data: any) => {
         this.repositories = data;
+      });
+      this.apiService.getUser('johnpapa').subscribe((data: any) => {
+        this.userData = data;
       });
     }
   }
@@ -40,10 +43,8 @@ export class AppComponent implements OnInit{
       this.loadRepositories();
     }
   }
-
   ngOnInit() {
-    // this.getRepos(this.currentPage);
-    this.apiService.getRepos('johnpapa',1,2).subscribe(console.log);
-    // this.apiService.getUser('johnpapa').subscribe(console.log);
+    // this.apiService.getRepos('johnpapa',1,2).subscribe(console.log);
+    this.apiService.getUser('johnpapa').subscribe(console.log);
   }
 }
